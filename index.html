@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEAI — Connaissance Entre Amis Intimes</title>
+  <!-- Supabase chargé UNE SEULE FOIS ici -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+  <!-- Écran d'authentification -->
+  <div id="authEcran" class="auth-ecran">
+    <div class="auth-boite">
+      <div class="auth-logo">
+        <img src="https://i.postimg.cc/7CJbtf9j/logo.png" alt="Logo CEAI" />
+      </div>
+      <h2 id="authTitre">Connexion</h2>
+      <p class="auth-sous-titre">Connaissance Entre Amis Intimes</p>
+
+      <div id="formConnexion">
+        <input type="email" id="connEmail" placeholder="Adresse email" />
+        <div class="champ-mdp">
+          <input type="password" id="connMdp" placeholder="Mot de passe" />
+          <button type="button" class="btn-oeil" id="btnOeilConn">👁️</button>
+        </div>
+        <button type="button" id="btnConnexion">Se connecter</button>
+        <p class="auth-lien">Pas encore de compte ? <a href="#" id="lienVersInscription">S'inscrire</a></p>
+        <p id="connErreur" class="auth-erreur"></p>
+      </div>
+
+      <div id="formInscription" class="cache">
+        <input type="text" id="inscNom" placeholder="Nom et Prénom" />
+        <input type="email" id="inscEmail" placeholder="Adresse email" />
+        <div class="champ-mdp">
+          <input type="password" id="inscMdp" placeholder="Mot de passe (6 caractères minimum)" />
+          <button type="button" class="btn-oeil" id="btnOeilInsc">👁️</button>
+        </div>
+        <button type="button" id="btnInscription">Valider mon inscription</button>
+        <p class="auth-lien">Déjà un compte ? <a href="#" id="lienVersConnexion">Se connecter</a></p>
+        <p id="inscErreur" class="auth-erreur"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Principal -->
+  <div id="sitePrincipal" class="site-principal cache">
+    <header class="entete">
+      <div class="entete-contenu">
+        <div class="entete-logo">
+          <img src="https://i.postimg.cc/7CJbtf9j/logo.png" alt="Logo CEAI" />
+        </div>
+        <div class="entete-titre">
+          <h1>CONNAISSANCE ENTRE AMIS INTIMES</h1>
+          <p class="entete-slogan">Ensemble, on va plus loin</p>
+          <p class="entete-valeurs">Engagement — Rigueur — Amitié</p>
+        </div>
+        <div class="entete-fondateurs">
+          <img src="https://i.postimg.cc/dZw10nF2/fondateurs.jpg" alt="Les fondateurs" />
+        </div>
+      </div>
+    </header>
+
+    <nav class="menu">
+      <div class="menu-conteneur">
+        <button class="menu-bouton" id="btnMenu">
+          <span>&#9776;</span> Menu
+        </button>
+        <div id="menuListe" class="menu-liste cache">
+          <a href="#" class="menu-item" data-page="accueil">Accueil</a>
+          <div class="menu-groupe">
+            <button class="menu-item sous-bouton" data-sous="sousCotisation">Cotisation ▾</button>
+            <div id="sousCotisation" class="menu-sous cache">
+              <a href="#" class="menu-item" data-page="adh-cotisation">Adhérer</a>
+              <a href="#" class="menu-item" data-page="suivi-cotisation">Suivi</a>
+              <a href="#" class="menu-item" data-page="paiement-cotisation">Faire un versement</a>
+            </div>
+          </div>
+          <div class="menu-groupe">
+            <button class="menu-item sous-bouton" data-sous="sousTontine">Tontine ▾</button>
+            <div id="sousTontine" class="menu-sous cache">
+              <a href="#" class="menu-item" data-page="adh-tontine">Rejoindre</a>
+              <a href="#" class="menu-item" data-page="suivi-tontine">Suivi du cycle</a>
+              <a href="#" class="menu-item" data-page="paiement-tontine">Faire un versement</a>
+            </div>
+          </div>
+          <a href="#" class="menu-item" data-page="publications">Publications</a>
+          <a href="#" class="menu-item" data-page="notifications">Notifications</a>
+          <a href="#" class="menu-item" data-page="apropos">À propos</a>
+          <a href="#" class="menu-item zone-admin cache" data-page="admin">Espace Admin</a>
+          <a href="#" class="menu-item" id="btnDeconnexion">Se déconnecter</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="contenu">
+      <section id="page-accueil" class="page active">
+        <h2>Bienvenue sur CEAI</h2>
+        <p id="infosMembre" class="infos">Chargement du profil...</p>
+        <div class="cartes">
+          <div class="carte"><h3>Capital Cotisation</h3><p class="chiffre" id="carteCapital">0 F CFA</p></div>
+          <div class="carte"><h3>Cycle Tontine</h3><p class="chiffre" id="carteTontine">Aucun</p></div>
+          <div class="carte"><h3>Membres Actifs</h3><p class="chiffre" id="carteMembres">0</p></div>
+        </div>
+        <h3>Dernières Publications</h3>
+        <div id="listePublications"><p class="vide">Aucune publication pour l'instant</p></div>
+      </section>
+      <section id="page-adh-cotisation" class="page"><h2>Adhérer à la Cotisation</h2><p class="vide">À compléter</p></section>
+      <section id="page-suivi-cotisation" class="page"><h2>Suivi des Cotisations</h2><p class="vide">À compléter</p></section>
+      <section id="page-paiement-cotisation" class="page"><h2>Versement — Cotisation</h2><p class="vide">À compléter</p></section>
+      <section id="page-adh-tontine" class="page"><h2>Rejoindre la Tontine</h2><p class="vide">À compléter</p></section>
+      <section id="page-suivi-tontine" class="page"><h2>Suivi du Cycle</h2><p class="vide">À compléter</p></section>
+      <section id="page-paiement-tontine" class="page"><h2>Versement — Tontine</h2><p class="vide">À compléter</p></section>
+      <section id="page-publications" class="page"><h2>Publications</h2><p class="vide">À compléter</p></section>
+      <section id="page-notifications" class="page"><h2>Notifications</h2><p class="vide">À compléter</p></section>
+      <section id="page-apropos" class="page"><h2>À propos de CEAI</h2><p class="vide">Présentation et fondateurs</p></section>
+      <section id="page-admin" class="page zone-admin cache"><h2>Espace Administrateur</h2><p class="vide">Gestion du site</p></section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+  </html>
