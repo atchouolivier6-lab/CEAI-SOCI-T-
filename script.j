@@ -1,10 +1,11 @@
 // =====================================================
-// CEAI — CONNEXION SUPABASE
+// CEAI — LOGIQUE PRINCIPALE
+// Réécrite à neuf, connexion Supabase intégrée
 // =====================================================
 
-// VOS IDENTIFIANTS DÉJÀ PRÉ-REMPLIS
-const SUPABASE_URL = "https://kzdgomtotwcsbrpbfixr.supabase.co";
-const SUPABASE_CLE = "sb_publishable_VGjfeEjhWk4GHDsl0rH8TA_GCp-7Ezu";
+// Vos identifiants Supabase
+const SUPABASE_URL = "https://sgghvlvwwprhvtsvuveg.supabase.co";
+const SUPABASE_CLE = "sb_publishable_w_2_Ndw0ZJAj-bVeXZgIzw_Y09wTTps";
 
 // Initialisation du client Supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_CLE);
@@ -116,12 +117,12 @@ async function chargerProfil(idCompte) {
     .limit(1);
 
   if (error) {
-    infosMembre.textContent = "❌ Erreur : " + error.message;
+    infosMembre.textContent = "Erreur : " + error.message;
     return;
   }
 
   if (!data || data.length === 0) {
-    infosMembre.textContent = "Fiche membre introuvable. Exécutez le code SQL dans Supabase.";
+    infosMembre.textContent = "Aucune fiche membre trouvée. Vérifiez le trigger SQL dans Supabase.";
     return;
   }
 
@@ -165,7 +166,7 @@ function traduireErreur(message) {
     "Unable to validate email address: invalid format": "Adresse email invalide",
     "Email not confirmed": "Veuillez confirmer votre email avant de vous connecter"
   };
-  return correspondances[message?.trim()] || `Erreur : ${message}`;
+  return correspondances[message.trim()] || `Erreur : ${message}`;
 }
 
 // ─── Navigation du menu ───
@@ -173,12 +174,15 @@ document.getElementById("btnMenu").addEventListener("click", () => {
   document.getElementById("menuListe").classList.toggle("cache");
 });
 
+// Sous-menus dépliants
 document.querySelectorAll(".sous-bouton").forEach(bouton => {
   bouton.addEventListener("click", () => {
-    document.getElementById(bouton.dataset.sous).classList.toggle("cache");
+    const cible = document.getElementById(bouton.dataset.sous);
+    cible.classList.toggle("cache");
   });
 });
 
+// Navigation entre pages
 document.querySelectorAll(".menu-item[data-page]").forEach(lien => {
   lien.addEventListener("click", e => {
     e.preventDefault();
