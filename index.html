@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CEAI — Connaissance Entre Amis Intimes</title>
-  <!-- Supabase chargé UNE SEULE FOIS ici -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Écran d'authentification -->
+  <!-- ─────── Écran d'authentification ─────── -->
   <div id="authEcran" class="auth-ecran">
     <div class="auth-boite">
       <div class="auth-logo">
@@ -18,23 +18,25 @@
       <h2 id="authTitre">Connexion</h2>
       <p class="auth-sous-titre">Connaissance Entre Amis Intimes</p>
 
+      <!-- Formulaire Connexion -->
       <div id="formConnexion">
         <input type="email" id="connEmail" placeholder="Adresse email" />
         <div class="champ-mdp">
           <input type="password" id="connMdp" placeholder="Mot de passe" />
-          <button type="button" class="btn-oeil" id="btnOeilConn">👁️</button>
+          <button type="button" class="btn-oeil" id="btnOeilConn" aria-label="Afficher le mot de passe">👁️</button>
         </div>
         <button type="button" id="btnConnexion">Se connecter</button>
         <p class="auth-lien">Pas encore de compte ? <a href="#" id="lienVersInscription">S'inscrire</a></p>
         <p id="connErreur" class="auth-erreur"></p>
       </div>
 
+      <!-- Formulaire Inscription -->
       <div id="formInscription" class="cache">
         <input type="text" id="inscNom" placeholder="Nom et Prénom" />
         <input type="email" id="inscEmail" placeholder="Adresse email" />
         <div class="champ-mdp">
           <input type="password" id="inscMdp" placeholder="Mot de passe (6 caractères minimum)" />
-          <button type="button" class="btn-oeil" id="btnOeilInsc">👁️</button>
+          <button type="button" class="btn-oeil" id="btnOeilInsc" aria-label="Afficher le mot de passe">👁️</button>
         </div>
         <button type="button" id="btnInscription">Valider mon inscription</button>
         <p class="auth-lien">Déjà un compte ? <a href="#" id="lienVersConnexion">Se connecter</a></p>
@@ -43,8 +45,10 @@
     </div>
   </div>
 
-  <!-- Site Principal -->
+  <!-- ─────── Site Principal ─────── -->
   <div id="sitePrincipal" class="site-principal cache">
+
+    <!-- En-tête -->
     <header class="entete">
       <div class="entete-contenu">
         <div class="entete-logo">
@@ -61,6 +65,7 @@
       </div>
     </header>
 
+    <!-- Menu -->
     <nav class="menu">
       <div class="menu-conteneur">
         <button class="menu-bouton" id="btnMenu">
@@ -68,6 +73,7 @@
         </button>
         <div id="menuListe" class="menu-liste cache">
           <a href="#" class="menu-item" data-page="accueil">Accueil</a>
+
           <div class="menu-groupe">
             <button class="menu-item sous-bouton" data-sous="sousCotisation">Cotisation ▾</button>
             <div id="sousCotisation" class="menu-sous cache">
@@ -76,6 +82,7 @@
               <a href="#" class="menu-item" data-page="paiement-cotisation">Faire un versement</a>
             </div>
           </div>
+
           <div class="menu-groupe">
             <button class="menu-item sous-bouton" data-sous="sousTontine">Tontine ▾</button>
             <div id="sousTontine" class="menu-sous cache">
@@ -84,6 +91,7 @@
               <a href="#" class="menu-item" data-page="paiement-tontine">Faire un versement</a>
             </div>
           </div>
+
           <a href="#" class="menu-item" data-page="publications">Publications</a>
           <a href="#" class="menu-item" data-page="notifications">Notifications</a>
           <a href="#" class="menu-item" data-page="apropos">À propos</a>
@@ -93,18 +101,33 @@
       </div>
     </nav>
 
+    <!-- Contenu des pages -->
     <main class="contenu">
+      <!-- Accueil -->
       <section id="page-accueil" class="page active">
         <h2>Bienvenue sur CEAI</h2>
         <p id="infosMembre" class="infos">Chargement du profil...</p>
         <div class="cartes">
-          <div class="carte"><h3>Capital Cotisation</h3><p class="chiffre" id="carteCapital">0 F CFA</p></div>
-          <div class="carte"><h3>Cycle Tontine</h3><p class="chiffre" id="carteTontine">Aucun</p></div>
-          <div class="carte"><h3>Membres Actifs</h3><p class="chiffre" id="carteMembres">0</p></div>
+          <div class="carte">
+            <h3>Capital Cotisation</h3>
+            <p class="chiffre" id="carteCapital">0 F CFA</p>
+          </div>
+          <div class="carte">
+            <h3>Cycle Tontine</h3>
+            <p class="chiffre" id="carteTontine">Aucun</p>
+          </div>
+          <div class="carte">
+            <h3>Membres Actifs</h3>
+            <p class="chiffre" id="carteMembres">0</p>
+          </div>
         </div>
         <h3>Dernières Publications</h3>
-        <div id="listePublications"><p class="vide">Aucune publication pour l'instant</p></div>
+        <div id="listePublications">
+          <p class="vide">Aucune publication pour l'instant</p>
+        </div>
       </section>
+
+      <!-- Autres pages (contenu à venir) -->
       <section id="page-adh-cotisation" class="page"><h2>Adhérer à la Cotisation</h2><p class="vide">À compléter</p></section>
       <section id="page-suivi-cotisation" class="page"><h2>Suivi des Cotisations</h2><p class="vide">À compléter</p></section>
       <section id="page-paiement-cotisation" class="page"><h2>Versement — Cotisation</h2><p class="vide">À compléter</p></section>
